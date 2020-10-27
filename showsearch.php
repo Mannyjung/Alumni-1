@@ -33,11 +33,6 @@
         </center>
         <br><br><br>
         <?php
-
-
-        $sql = "SELECT * FROM info,year WHERE info.a_id=year.a_id ";
-        $stmt = $conn->prepare($sql);
-        $stmt->execute();
         while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         ?>
             <div class="card w-75">
@@ -50,7 +45,7 @@
                             <h5 class="card-title">ชื่อ : <?php echo $result['title'], $result['fname'], ' ', $result['lname']; ?></h5>
                             <p class="card-text">อีเมลล์ : <?php echo $result['email']; ?></p>
                             <p class="card-text">เฟสบุ๊ค : <?php echo $result['face']; ?></p>
-                            <p class="card-text">ปีที่เข้า : <?php echo $result['attend']; ?></p>
+                         
                             <div align="right">
                                 <a href="selectone.php?a_id=<?php echo $result['a_id']; ?>" class="btn btn-primary">ดูรายละเอียด</a>
                             </div>
