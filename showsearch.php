@@ -9,7 +9,7 @@
 </head>
 
 <body>
-     <div align="center">
+    <div align="center">
         <img src="photo/header1920px.png" width="100%">
     </div>
     <!-- header -->
@@ -20,11 +20,11 @@
     <?php
     include('connect.php');
     $search = $_GET['search'];
-    $sql = "SELECT * FROM `alumni`.`info` WHERE (CONVERT(`fname` USING utf8) LIKE '%$search%')";
+    $sql = "SELECT * FROM `info` WHERE (CONVERT(`fname` USING utf8) LIKE '%$search%')";
     $stmt = $conn->query($sql);
     ?>
     <!-- header -->
-   
+
 
     <div class="container">
         <br><br><br>
@@ -34,13 +34,17 @@
         <br><br><br>
         <?php
 
+
+        $sql = "SELECT * FROM info,year WHERE info.a_id=year.a_id ";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
         while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         ?>
             <div class="card w-75">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-4">
-                            <img src="upload/<?php echo $result['image'] ?>" alt="" width="180px" height="180px">
+                            <img src="./upload/<?php echo $result['image'] ?>" alt="" width="180px" height="180px">
                         </div>
                         <div class="col-8">
                             <h5 class="card-title">ชื่อ : <?php echo $result['title'], $result['fname'], ' ', $result['lname']; ?></h5>
